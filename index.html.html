@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>퇴직금 계산기</title>
+
+<style>
+    body {
+        font-family: "Malgun Gothic", sans-serif;
+        background: #f4f6f9;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+    }
+
+    .container {
+        background: white;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        width: 400px;
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 25px;
+        color: #333;
+    }
+
+    .input-group {
+        margin-bottom: 15px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 6px;
+        font-weight: bold;
+        color: #555;
+    }
+
+    input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        box-sizing: border-box;
+        font-size: 16px;
+    }
+
+    .result {
+        margin-top: 20px;
+        padding: 15px;
+        background: #eef7ff;
+        border-radius: 10px;
+        text-align: center;
+    }
+
+    .amount {
+        font-size: 28px;
+        font-weight: bold;
+        color: #0078d7;
+        margin-top: 10px;
+    }
+
+    .info {
+        font-size: 13px;
+        color: #777;
+        margin-top: 15px;
+        line-height: 1.5;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>퇴직금 계산기</h1>
+
+    <div class="input-group">
+        <label for="years">근속연수 (년)</label>
+        <input type="number" id="years" min="0" step="0.1" placeholder="예: 5">
+    </div>
+
+    <div class="input-group">
+        <label for="avgWage">1일 평균임금 (원)</label>
+        <input type="number" id="avgWage" min="0" placeholder="예: 120000">
+    </div>
+
+    <div class="result">
+        <div>예상 퇴직금</div>
+        <div class="amount" id="result">0 원</div>
+    </div>
+
+    <div class="info">
+        계산식: 1일 평균임금 × 30일 × 근속연수<br>
+        (간단 계산용 예시이며 실제 퇴직금 산정과 차이가 있을 수 있습니다.)
+    </div>
+</div>
+
+<script>
+function calculateRetirementPay() {
+    const years = parseFloat(document.getElementById('years').value) || 0;
+    const avgWage = parseFloat(document.getElementById('avgWage').value) || 0;
+
+    const retirementPay = avgWage * 30 * years;
+
+    document.getElementById('result').textContent =
+        retirementPay.toLocaleString('ko-KR') + ' 원';
+}
+
+document.getElementById('years').addEventListener('input', calculateRetirementPay);
+document.getElementById('avgWage').addEventListener('input', calculateRetirementPay);
+</script>
+
+</body>
+</html>
